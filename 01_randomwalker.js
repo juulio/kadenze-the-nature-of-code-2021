@@ -12,15 +12,14 @@ function draw() {
 }
 
 function Walker() {
-    this.x = width/2;
-    this.y = height/2;
+    this.pos = createVector(width/2, 0);
+    this.vel = createVector(0, 0);
+    this.acc = createVector(0, 0.01);
 
-    this.pos = createVector(width/2, height/2);
-    
     this.update = function(){
-    //    let vel = createVector(random(-5, 5), random(-5, 5));
-        let vel = createVector(1, 1);
-        this.pos.add(vel);
+        this.vel.add(this.acc);
+        this.pos.add(this.vel);
+        // this.pos = this.pos.add(this.vel);
     };
 
     this.display = function(){
