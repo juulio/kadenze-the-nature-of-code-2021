@@ -1,26 +1,30 @@
 let w;
 
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(900, 500);
     w = new Walker();
 }
 
 function draw() {
-    background(0);
+    background(220);
     w.update();
     w.display();
 }
 
 function Walker() {
-    this.pos = createVector(2, 2);
+    this.x = width/2;
+    this.y = height/2;
+
+    this.pos = createVector(width/2, height/2);
     
     this.update = function(){
-        let vel = createVector(random(-2, 3), random(-2, 3));
-        this.pos.add(this.vel);
+    //    let vel = createVector(random(-5, 5), random(-5, 5));
+        let vel = createVector(1, 1);
+        this.pos.add(vel);
     };
 
     this.display = function(){
         fill(255, 0, 0);
-        ellipse(this.x, this.y, 30, 30);
+        ellipse(this.pos.x, this.pos.y, 30, 30);
     };
 }
