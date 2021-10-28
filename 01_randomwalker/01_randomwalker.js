@@ -2,22 +2,41 @@ class Walker {
     constructor(x, y, t) {
         this.pos = createVector(x, y);
         this.vel = createVector(0, 0);
-        this.acc = createVector(0.01, 0.01);
-        // this.size = createVector(20, 20);
         this.size = 20;
         this.t = 0;
     }
     
     update() {
         this.vel.add(this.acc);
-        this.pos.add(this.vel);
-        this.t = this.t + 0.04;
+        this.t = this.t + 0.08;
     }
 
     display() {
-        point(this.pos.x, this.pos.y);
-        stroke('purple'); // Change the color
-        strokeWeight(this.size);
+        let randomN = floor(random(4)),
+            r = floor(random(255)),
+            g = floor(random(255)),
+            b = floor(random(255)),
+            a = floor(random(255));
+
+        switch (randomN) {
+            case 0:
+                this.pos.x += 4;
+                break;
+            case 1:
+                this.pos.x -= 4;
+                break;
+            case 2:
+                this.pos.y += 4;
+                break;
+            case 3:
+                this.pos.y -= 4;
+                break;
+        }
+     
+        noStroke();
+        fill(r, g, b, a);
+        circle(this.pos.x, this.pos.y, this.size);
+        
     }
 
     checkEdges() {
@@ -38,6 +57,6 @@ class Walker {
     
     pulse() {
         let sizeDelta = noise(this.t);
-        this.size = map(sizeDelta, 0, 1, 5, 45);
+        this.size = map(sizeDelta, 0, 1, 5, 30);
     }
 }

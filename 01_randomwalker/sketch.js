@@ -7,11 +7,11 @@ let walker;
 
 function setup() {
     createCanvas(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-    walker = new Walker(200, 100);
+    walker = new Walker(VIEWPORT_WIDTH/2, VIEWPORT_HEIGHT/2);
+    background(0);
 }
 
 function draw() {
-    background(220);
     walker.update();
     walker.checkEdges();
     walker.pulse();
