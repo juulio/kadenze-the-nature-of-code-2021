@@ -2,8 +2,9 @@ class Walker {
     constructor(x, y, t) {
         this.pos = createVector(x, y);
         this.vel = createVector(0, 0);
-        this.acc = createVector(0, 0.01);
-        this.size = createVector(20, 20);
+        this.acc = createVector(0.01, 0.01);
+        // this.size = createVector(20, 20);
+        this.size = 20;
         this.t = 0;
     }
     
@@ -14,10 +15,9 @@ class Walker {
     }
 
     display() {
-        stroke(255);
-        strokeWeight(2);
-        fill(255, 0, 0);
-        ellipse(this.pos.x, this.pos.y, this.size.x, this.size.y);
+        point(this.pos.x, this.pos.y);
+        stroke('purple'); // Change the color
+        strokeWeight(this.size);
     }
 
     checkEdges() {
@@ -38,9 +38,6 @@ class Walker {
     
     pulse() {
         let sizeDelta = noise(this.t);
-        sizeDelta = map(sizeDelta, 0, 1, 10, 60);
-        
-        this.size.x = sizeDelta;
-        this.size.y = sizeDelta;
+        this.size = map(sizeDelta, 0, 1, 5, 45);
     }
 }
