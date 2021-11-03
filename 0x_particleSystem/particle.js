@@ -39,13 +39,13 @@ class Particle {
         this.vel.add(this.acc);
         this.pos.add(this.vel);
         this.acc.set(0, 0);
-        this.lifespan -= 3;
+        this.lifespan -= 2;
     }
 
     display() {
         stroke(255, this.lifespan);
         strokeWeight(2);
-        fill(255, this.lifespan);
+        fill(random(205, 255), random(100, 200), this.lifespan);
         ellipse(this.pos.x, this.pos.y, this.radius * 2);
     }
 }
