@@ -1,7 +1,7 @@
 class Particle {
     constructor(x, y) {
         this.pos = createVector(x, y);
-        this.vel = createVector(0, 0);
+        this.vel = createVector(random(-1,1), random(-2,0));
         this.acc = createVector(0, 0);
         this.lifespan = 255;
         this.radius = 4;
@@ -21,16 +21,16 @@ class Particle {
     }
 
     edges() {
-        if(this.pos.y >= VIEWPORT_HEIGHT - this.r) {
+        if(this.pos.y >= VIEWPORT_HEIGHT - this.radius) {
             this.pos.y = VIEWPORT_HEIGHT - r;
             this.vel.y *= -1;
         }
-        if(this.pos.x >= VIEWPORT_WIDTH - this.r) {
-            this.pos.x = VIEWPORT_WIDTH - this.r;
+        if(this.pos.x >= VIEWPORT_WIDTH - this.radius) {
+            this.pos.x = VIEWPORT_WIDTH - this.radius;
             this.vel.x *= -1;
         }
-        else if(this.pos.x <= this.r){
-            this.pos.x = this.r;
+        else if(this.pos.x <= this.radius){
+            this.pos.x = this.radius;
             this.vel *= -1;
         }
     }
@@ -39,13 +39,13 @@ class Particle {
         this.vel.add(this.acc);
         this.pos.add(this.vel);
         this.acc.set(0, 0);
-        this.lifespan -= 5;
+        this.lifespan -= 3;
     }
 
     display() {
         stroke(255, this.lifespan);
         strokeWeight(2);
         fill(255, this.lifespan);
-        ellipse(this.pos.x, this.pos.y, this.r * 2);
+        ellipse(this.pos.x, this.pos.y, this.radius * 2);
     }
 }

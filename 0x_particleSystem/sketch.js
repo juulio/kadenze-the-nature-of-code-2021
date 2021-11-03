@@ -7,11 +7,11 @@ let ps;
 
 function setup() {
     createCanvas(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-    ps = new ParticleSystem(VIEWPORT_WIDTH/2, 0);
+    ps = new ParticleSystem(VIEWPORT_WIDTH/2, 40);
 }
 
 function draw() {
-    background(51);
-    ps.addParticle();
+    background(0);
     ps.run();
+    ps.addParticle();
 }
