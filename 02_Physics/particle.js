@@ -1,8 +1,9 @@
 class Particle {
-    constructor(x, y) {
-        this.pos = createVector(width/2, height/2);
+    constructor(x, y, m) {
+        this.pos = createVector(x, y);
         this.vel = createVector(0, 0);
-        this.acc = createVector(0, 0);
+        this.acc = createVector(0, 1);
+        this.mass = m;
     }
 
     update() {
@@ -13,11 +14,13 @@ class Particle {
 
     display() {
         fill(255);
-        ellipse(this.pos.x, this.pos.y, 48, 48);
+        ellipse(this.pos.x, this.pos.y, this.mass*10, this.mass*10);
     }
 
     applyForce(force) {
-        this.acc.add(force);
+        let tempForce = force.copy();
+        tempForce.div(this.mass);
+        this.acc.add(tempForce);
     }
 
     edges() {
